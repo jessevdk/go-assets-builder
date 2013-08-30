@@ -15,7 +15,10 @@ func main() {
 		Output       string `short:"o" long:"output" description:"File to write output to, or - to write to stdout" default:"-"`
 	}
 
-	args, err := flags.Parse(&opts)
+	p := flags.NewParser(&opts, flags.Default)
+	p.Usage = "[OPTIONS] FILES..."
+
+	args, err := p.Parse()
 
 	if err != nil {
 		os.Exit(1)
