@@ -7,7 +7,7 @@ go embedded assets from for example a Makefile.
 
 ```console
 Usage:
-  go-assets-builder [OPTIONS]
+  go-assets-builder [OPTIONS] FILES...
 
 Help Options:
   -h, --help=         Show this help message
