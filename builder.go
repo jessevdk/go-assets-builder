@@ -11,7 +11,6 @@ func main() {
 		PackageName  string `short:"p" long:"package" description:"The package name to generate the assets for" default:"main"`
 		VariableName string `short:"v" long:"variable" description:"The name of the generated asset tree" default:"Assets"`
 		StripPrefix  string `short:"s" long:"strip-prefix" description:"Strip the specified prefix from all paths"`
-		Compressed   bool   `short:"c" long:"compressed" description:"Enable gzip compression of assets"`
 		Output       string `short:"o" long:"output" description:"File to write output to, or - to write to stdout" default:"-"`
 	}
 
@@ -28,7 +27,6 @@ func main() {
 		PackageName:  opts.PackageName,
 		VariableName: opts.VariableName,
 		StripPrefix:  opts.StripPrefix,
-		Compressed:   opts.Compressed,
 	}
 
 	for _, f := range args {
