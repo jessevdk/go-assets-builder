@@ -4,6 +4,7 @@ import (
 	"github.com/jessevdk/go-assets"
 	"github.com/jessevdk/go-flags"
 	"os"
+	"path/filepath"
 )
 
 func main() {
@@ -12,6 +13,7 @@ func main() {
 		VariableName string `short:"v" long:"variable" description:"The name of the generated asset tree" default:"Assets"`
 		StripPrefix  string `short:"s" long:"strip-prefix" description:"Strip the specified prefix from all paths"`
 		Output       string `short:"o" long:"output" description:"File to write output to, or - to write to stdout" default:"-"`
+		Directory    string `short:"d" long:"directory" description:"Recurse into directory for files"`
 	}
 
 	p := flags.NewParser(&opts, flags.Default)
@@ -27,6 +29,15 @@ func main() {
 		PackageName:  opts.PackageName,
 		VariableName: opts.VariableName,
 		StripPrefix:  opts.StripPrefix,
+	}
+
+	if opts.Directory != "" {
+		filepath.Walk(opts.Directory, func(path string, f os.FileInfo, err error) error {
+			if err := g.Add(path); err != nil {
+				panic(err)
+			}
+			return nil
+		})
 	}
 
 	for _, f := range args {
