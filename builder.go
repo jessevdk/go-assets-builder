@@ -1,9 +1,10 @@
 package main
 
 import (
+	"os"
+
 	"github.com/jessevdk/go-assets"
 	"github.com/jessevdk/go-flags"
-	"os"
 )
 
 func main() {
